@@ -1,0 +1,16 @@
+{
+  "name": "app-galeria",
+  "version": "1.0.0",
+  "description": "Projeto de Galeria de Imagens back-end em NodeJs ",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Full Stack Developer",
+  "license": "ISC",
+  "dependencies": {
+    "body-parse": "^0.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
