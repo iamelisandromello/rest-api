@@ -18,7 +18,9 @@ router.get("/", (req, resp) => resp.json({
 api.use("/", router);               // Rota Default
 api.use("/galeria", galeriaRouter); // Rota para Galeria
 api.use("/users", usersRouter);     // Rota para Galeria
+
 api.listen(porta);
+api.on('error', onError);           //Função de Tratamento de erros
 console.log("Run API Express");
 
 function normalizePort(val) {
@@ -33,4 +35,27 @@ function normalizePort(val) {
     }
 
     return false;
+}
+
+function onError(error) {
+    if(error.syscall !== 'listen') {
+        throw error;
+    }
+
+    const bind  = typeof porta === 'string' ?
+        'Pipe ' + port :
+        'Pipe ' + port;
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privilege');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already  in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+
 }
