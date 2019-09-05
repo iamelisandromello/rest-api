@@ -15,7 +15,7 @@ api.use(cors());
 api.use(bodyparser.urlencoded({extended: true}));
 api.use(bodyparser.json({limit: '20mb', extended: true}));
 
-api.use('/public', express.static('public')); //externalizar a pasta public para acesso externo
+api.use('/public', express.static(__dirname + '/public')); //externalizar a pasta public para acesso externo
 
 
 router.get("/", (req, resp) => resp.json({

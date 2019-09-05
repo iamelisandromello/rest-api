@@ -1,4 +1,3 @@
-
 {
 	"titulo": "Teste",
 	"dados_imagem": {
