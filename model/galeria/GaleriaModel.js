@@ -13,4 +13,10 @@ module.exports = class GaleriaModel {
       return db.query("INSERT INTO galeria (titulo, caminho) values (?, ?)",
       [dados.titulo, dados.caminho], callback);
    }
+
+   static editar(dados, callback) {
+      return db.query("UPDATE galeria SET titulo = ?, caminho = ?  WHERE id_galeria = ?",
+      [dados.titulo, dados.caminho, dados.id_galeria], callback);
+   }
+
 }

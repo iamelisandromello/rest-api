@@ -79,4 +79,40 @@ router.post("/?", function(req, resp, next){
         
 });
 
+router.put("/", function(req, resp, next){
+
+    let resposta = new RespostaClass();
+
+    //verificando se recebeu uma imagem
+    if(req.body.dados_imagem != null) {
+        //Salvar a Imagem
+        let bitmap              = new Buffer.from(req.body.dados_imagem.imagem_base64, 'base64');
+        let dataAtual           = new Date().toLocaleString().replace(/\//g,"")
+        .replace(/:/g,"").replace(/-/g,"").replace(/ /g,"");
+        let nomeImagemCaminho   = pasta_Publica + dataAtual + req.body.dados_imagem.nome_arquivo;
+        fs.writeFileSync(nomeImagemCaminho, bitmap);
+        req.body.caminho        = nomeImagemCaminho;
+    }    
+
+    GaleriaModel.editar(req.body, function(erro, retorno) {
+        if(erro){
+            resposta.erro   = true;
+            resposta.msg    = "Ocorreu um Erro";
+        } 
+        else {
+            if(retorno.affectedRows > 0) {
+                resposta.msg    = "Atualização realizada com Sucesso";
+            }
+            else {
+                resposta.erro   = true;
+                resposta.msg    = "Não foi pssível realizar a operação";
+            };
+        }
+        console.log('resp:', resposta);
+        resp.json(resposta); //converte o objeto de retorno em json
+    });
+        
+});
+
+
 module.exports = router;
