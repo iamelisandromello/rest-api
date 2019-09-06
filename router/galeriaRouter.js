@@ -114,5 +114,29 @@ router.put("/", function(req, resp, next){
         
 });
 
+router.delete("/:id?", function(req, resp, next){
+    GaleriaModel.deletar(req.params.id, function(erro, retorno){
+        let resposta = new RespostaClass();
+        if(erro){
+            resposta.erro   = true;
+            resposta.msg    = "Ocorreu um Erro";
+        } 
+        else {
+            
+            if(retorno.affectedRows > 0) {
+                resposta.msg    = "Exclusão realizada com Sucesso";
+            }
+            else {
+                resposta.erro   = true;
+                resposta.msg    = "Não foi pssível excluir o registro";
+            };
+
+            resposta.dados = retorno;
+        }
+
+        resp.json(resposta); //converte o objeto de retorno em json
+    });
+});
+
 
 module.exports = router;

@@ -19,4 +19,9 @@ module.exports = class GaleriaModel {
       [dados.titulo, dados.caminho, dados.id_galeria], callback);
    }
 
+   static deletar(id, callback) {
+      return db.query("DELETE FROM galeria WHERE id_galeria = ?",
+      [id], callback);
+   }
+
 }
