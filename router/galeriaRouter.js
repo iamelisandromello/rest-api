@@ -12,6 +12,7 @@ router.get("/", function(req, resp, next){
         if(erro){
             resposta.erro   = true;
             resposta.msg    = "Ocorreu um Erro";
+            console.log('erro: ', erro);
         } 
         else {
             resposta.dados = retorno;
@@ -27,6 +28,7 @@ router.get("/:id?", function(req, resp, next){
         if(erro){
             resposta.erro   = true;
             resposta.msg    = "Ocorreu um Erro";
+            console.log('erro: ', erro);
         } 
         else {
             resposta.dados = retorno;
@@ -56,6 +58,7 @@ router.post("/?", function(req, resp, next){
             if(erro){
                 resposta.erro   = true;
                 resposta.msg    = "Ocorreu um Erro";
+                console.log('erro: ', erro);
             } 
             else {
                 if(retorno.affectedRows > 0) {
@@ -98,6 +101,7 @@ router.put("/", function(req, resp, next){
         if(erro){
             resposta.erro   = true;
             resposta.msg    = "Ocorreu um Erro";
+            console.log('erro: ', erro);
         } 
         else {
             if(retorno.affectedRows > 0) {
@@ -120,6 +124,7 @@ router.delete("/:id?", function(req, resp, next){
         if(erro){
             resposta.erro   = true;
             resposta.msg    = "Ocorreu um Erro";
+            console.log('erro: ', erro);
         } 
         else {
             
